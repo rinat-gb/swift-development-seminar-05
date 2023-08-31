@@ -15,7 +15,7 @@ final class FriendTableViewController: UITableViewController {
         view.backgroundColor = .systemBackground
         title = Constants.Titles.friendsTitle
         tableView.register(FriendCell.self, forCellReuseIdentifier: Constants.CellNames.friendsCellName)
-
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person"), style: .plain, target: self, action: #selector(showPersonalInfo))
         NetworkService().getFiends { [weak self] friendsModel in
             if friendsModel.response?.count == 0 {
                 // а нету друзей! меняем заголовое на "Нет друзей"
@@ -32,16 +32,13 @@ final class FriendTableViewController: UITableViewController {
         }
     }
 
-    // ЗАКОММЕНТИРОВАНО ПО СРАВНЕНИЮ С КОДОМ ИЗ ДОМАШНЕГО ЗАДАНИЯ ПРЕДЫДУЩЕГО СЕМИНАРА
-    //
-    // нам необходимо отображать только одну секцию
-    // если не задавать эту функцию, то уже существующая по умолчанию реализация в UIKit
-    // возвращает как раз единицу и поэтому отдельно реалтзовывать функцию, возвращающую
-    // единицу, нам не требуется.
-    //
-    // override func numberOfSections(in _: UITableView) -> Int {
-    //     1
-    // }
+    @objc private func showPersonalInfo() {
+        let animation = CATransition()
+        animation.type = .fade
+        animation.duration = 1
+        navigationController?.view.layer.add(animation, forKey: nil)
+        navigationController?.pushViewController(ProfileViewController(), animated: false)
+    }
 
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return friendsModel?.response?.count ?? 0

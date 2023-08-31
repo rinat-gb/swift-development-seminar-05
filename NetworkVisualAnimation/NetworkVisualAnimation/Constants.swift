@@ -10,6 +10,7 @@ enum Constants {
         static let friendsTitle = "Друзья"
         static let groupsTitle = "Группы"
         static let photosTitle = "Фото"
+        static let profileTitle = "Профиль"
     }
 
     enum TitlesNoItems {

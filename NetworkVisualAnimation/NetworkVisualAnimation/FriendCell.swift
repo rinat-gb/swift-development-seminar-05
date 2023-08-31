@@ -42,13 +42,13 @@ final class FriendCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setupViews() {
+    private func setupViews() {
         contentView.addSubview(statusTextView)
         contentView.addSubview(photoView)
         contentView.addSubview(nameView)
     }
 
-    func setupConstraints() {
+    private func setupConstraints() {
         statusTextView.translatesAutoresizingMaskIntoConstraints = false
         photoView.translatesAutoresizingMaskIntoConstraints = false
         nameView.translatesAutoresizingMaskIntoConstraints = false

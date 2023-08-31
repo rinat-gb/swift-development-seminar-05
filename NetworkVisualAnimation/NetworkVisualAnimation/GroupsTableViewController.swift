@@ -32,17 +32,6 @@ final class GroupsTableViewController: UITableViewController {
         }
     }
 
-    // ЗАКОММЕНТИРОВАНО ПО СРАВНЕНИЮ С КОДОМ ИЗ ДОМАШНЕГО ЗАДАНИЯ ПРЕДЫДУЩЕГО СЕМИНАРА
-    //
-    // нам необходимо отображать только одну секцию
-    // если не задавать эту функцию, то уже существующая по умолчанию реализация в UIKit
-    // возвращает как раз единицу и поэтому отдельно реалтзовывать функцию, возвращающую
-    // единицу, нам не требуется.
-    //
-    // override func numberOfSections(in _: UITableView) -> Int {
-    //     1
-    // }
-
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return groupsModel?.response?.count ?? 0
     }

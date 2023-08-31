@@ -72,4 +72,31 @@ final class NetworkService {
             }
         }.resume()
     }
+
+    func getProfile(getData: @escaping (ProfileModel) -> Void) {
+        guard let url = URL(string:
+            "https://api.vk.com/method/account.getProfileInfo?access_token=\(NetworkService.accessToken)&album_id=wall&v=5.131")
+        else {
+            return
+        }
+        session.dataTask(with: url) { data, _, error in
+            guard let data = data else {
+                return
+            }
+            do {
+                let profile = try JSONDecoder().decode(ProfileModel.self, from: data)
+                getData(profile)
+            } catch {
+                print(error)
+            }
+        }.resume()
+    }
+    
+    func getProfilePhoto(photoURL: String?, getData: @escaping (Data) -> Void) {
+        DispatchQueue.global().async {
+            if let url = URL(string: photoURL ?? ""), let data = try? Data(contentsOf: url) {
+                getData(data)
+            }
+        }
+    }
 }

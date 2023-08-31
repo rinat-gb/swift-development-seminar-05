@@ -25,7 +25,6 @@ final class GroupCell: UITableViewCell {
         label.textColor = .black
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
-        label.sizeToFit()
         return label
     }()
 
@@ -42,13 +41,13 @@ final class GroupCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setupViews() {
+    private func setupViews() {
         contentView.addSubview(photoView)
         contentView.addSubview(nameView)
         contentView.addSubview(descriptionView)
     }
 
-    func setupConstraints() {
+    private func setupConstraints() {
         photoView.translatesAutoresizingMaskIntoConstraints = false
         nameView.translatesAutoresizingMaskIntoConstraints = false
         descriptionView.translatesAutoresizingMaskIntoConstraints = false
